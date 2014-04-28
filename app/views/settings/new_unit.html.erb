@@ -1,0 +1,14 @@
+<div class='row'>
+	<%= render(:partial => 'header') %>
+		<h2>Create new Unit</h2>
+		<div class='col-sm-2 col-sm-offset-10'>
+			<%= link_to "Back to Unit list", :action => 'unit', :html => {:class => 'form-control'} %>
+		</div>
+		<br />
+		<%= form_for @unit, :as => :unit, :url => {:action => 'register_unit'}, :html => {:class => 'new_unit', :role => 'form'}, :method => 'post' do |f| %>
+			<%= f.text_field :name, :placeholder => 'Unit Name', :class => 'form-control' %>
+			<%= f.text_field :leader, :placeholder => 'Leader Name', :class => 'form-control' %>
+			<%= f.submit "Create Unit", :class => "form-control" %>
+		<% end %> 
+	</div>
+</div>

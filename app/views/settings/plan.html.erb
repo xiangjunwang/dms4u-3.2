@@ -1,0 +1,29 @@
+<div class='row'>
+	<%= render(:partial => 'header') %>
+		<h2>Plans</h2>
+		<div class='col-sm-2 col-sm-offset-10'>
+			<%= link_to "New Plan", :action => 'new_plan', :html => {:class => 'form-control'} %>
+		</div>
+		<table class="table">
+			<tr class='header'>
+				<th>&nbsp;</th>
+				<th>Name</th>
+				<th>Leader</th>
+				<th>Member size</th>
+				<th>Actions</th>
+			</tr>
+			<% @units.each do |unit| %>
+			<tr class="<%= cycle('odd', 'even') %>">
+				<td><%= unit.id %></td>
+				<td><%= unit.name %></td>
+				<td><%= unit.name %></td>
+				<td><%= unit.users.size %></td>
+				<td class='actions'>
+					<%= link_to('Edit', {:action => 'edit_unit', :id => unit.id}, :class => 'form-control') %>
+					<%= link_to('Delete', {:action => 'delete_unit', :id => unit.id}, :class => 'form-control') %>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+</div>

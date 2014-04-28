@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang='en'>
+<head>
+	<meta httpd-equiv='Content-Type' content='text/html; charset=utf-8'>
+	<title>DMS4U | <%= @page_title || 'Public Area' %></title>
+	<meta name='author' content='XiangJun Wang'>
+	<%= stylesheet_link_tag('application', :media => 'all') %>
+	<%= javascript_include_tag('application', :media => 'all') %>
+</head>
+<body>
+	<div class='navbar navbar-default navbar-fixed-top' role='navigation'>
+		<div class='container'>
+			<% if current_user %>
+				<ul class='nav nav-tabs'>
+					<li id='nav-dashboard' 
+						<% if @nav_id == 'nav-dashboard' %> 
+							<%= "class='active'" %>
+						<% end %>
+					 	>
+					 	<%= link_to 'Dashboard', :controller => 'dashboard' %>
+					 </li>
+					<li id='nav-user' 
+						<% if @nav_id == 'nav-users' %>
+							<%= "class='active'" %>
+						<% end %>
+						>
+						<%= link_to 'User Management', :controller => 'users', :action => 'list' %>
+					</li>
+					<li id='nav-setting'
+						<% if @nav_id == 'nav-settings' %>
+							<%= "class='active'" %>
+						<% end %>
+						>
+						<%= link_to 'Settings', :controller => 'settings', :action => 'unit' %>
+					</li>
+					<li id='nav-blog'
+						<% if @nav_id == 'nav-blogs' %>
+							<%= "class='active'" %>
+						<% end %>
+						>
+						<%= link_to 'Blogs', :controller => 'blogs', :action => 'list' %>
+					</li>
+				</ul>
+				<div class="btn-group">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						Logged in as <%= current_user.username %> <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<li><%= link_to current_user.username, account_settings_path %></li>
+						<li class="divider"></li>
+						<li><%= link_to "Sign Out", sign_out_path %></li>
+					</ul>
+				</div>
+			<% else %>
+				<div id='navigator'>
+					<%= link_to "Sign up", new_user_path, class: 'navbar-link' %>&nbsp;&nbsp;&nbsp;
+					<%= link_to "Sign In", sign_in_path, class: 'navbar-link' %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+	<div class='container'>
+		<% flash.each do |name, msg| %>
+			<% if name.to_s == 'notice' %>
+				<%= content_tag :div, msg, :id => "flash_#{name}", :class => 'alert alert-success' %>
+			<% elsif name.to_s == 'warning' %>
+				<%= content_tag :div, msg, :id => "flash_#{name}", :class => 'alert alert-warning' %>
+			<% elsif name.to_s == 'info' %>
+				<%= content_tag :div, msg, :id => "flash_#{name}", :class => 'alert alert-info' %>
+			<% elsif name.to_s == 'error' %>
+				<%= content_tag :div, msg, :id => "flash_#{name}", :class => 'alert alert-danger' %>
+			<% end %>
+		<% end %>
+
+		<div id='content'>
+			<%= yield %>
+		</div>
+		<div class='clear'></div>
+	</div>
+	<div id='footer'>
+		<div class='container'>
+			<p id='copyright'>&copy; Copyright 2014 </p>
+		</div>
+	</div>
+</body>
+</html>

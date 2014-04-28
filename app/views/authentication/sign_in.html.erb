@@ -1,0 +1,10 @@
+<%= form_for @user, :as => :user, :url => sign_in_path(@user), :html => {:class => 'sign_in', :role => 'form'} do |f| %>
+  <h2 class="form-signin-heading">Please sign in</h2>
+  <%= f.text_field :username, :class => 'form-control', :placeholder => 'Username' %>
+  <%= f.password_field :password, :class => 'form-control', :placeholder => 'Password' %>
+  <label class='checkbox'>
+    Remember me<%= f.check_box :remember_me %>
+  </label>
+  <%= f.button 'Sign In', :type => 'submit', :class => 'btn btn-primary btn-block form-control' %><br />
+  <%= link_to 'forgot your password?', :forgot_password, :class => 'form-control' %>
+<% end %>

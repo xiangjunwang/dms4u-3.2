@@ -1,0 +1,23 @@
+<div class="panel panel-default">
+	<!-- Default panel contents -->
+	<div class="panel-heading">Users list</div>
+
+	<!-- Table -->
+	<table class="table">
+		<tr class='header'>
+			<th>Name</th>
+			<th>Username</th>
+			<th>Actions</th>
+		</tr>
+		<% @users.each do |user| %>
+		<tr class="<%= cycle('odd', 'even') %>">
+			<td><%= user.name %></td>
+			<td><%= user.username %></td>
+			<td class='actions'>
+				<%= link_to('Edit', {:action => 'edit', :id => user.id}, :class => 'action edit') %>
+				<%= link_to('Delete', {:action => 'delete', :id => user.id}, :class => 'action delete') %>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+</div>

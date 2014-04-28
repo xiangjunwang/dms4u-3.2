@@ -1,0 +1,14 @@
+<div class='row'>
+	<%= render(:partial => 'header') %>
+		<h2>Delete Unit</h2>
+		<div class='col-sm-2 col-sm-offset-10'>
+			<%= link_to "Back to Unit list", :action => 'unit', :html => {:class => 'form-control'} %>
+		</div>
+		<br />
+		<%= form_for @unit, :as => :unit, :url => {:action => 'destroy_unit'}, :html => {:class => 'delete_unit', :role => 'form'}, :method => 'post' do |f| %>
+			<h4 class='reference-name'>Unit name : <%= @unit.name %></h4>
+			<p class='form-control'>Are you sure you want to permanently delete this unit?</p>
+			<%= f.submit "Delete Unit", :class => "form-control" %>
+		<% end %> 
+	</div>
+</div>

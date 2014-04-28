@@ -1,0 +1,21 @@
+<div class="sidebar">
+		<ul class="nav nav-sidebar">
+			<li <% if @setting_nav_id.to_s == 'role' %> <%= "class='active'" %> <% end %>"><%= link_to "Role Management", :action => "role" %></li>
+			<li <% if @setting_nav_id.to_s == 'unit' %> <%= "class='active'" %> <% end %>"><%= link_to "Unit Management", :action => 'unit' %></li>
+			<li <% if @setting_nav_id.to_s == 'position' %> <%= "class='active'" %> <% end %>"><%= link_to "Position Management", :action => "position" %></li>
+			<li <% if @setting_nav_id.to_s == 'plan' %> <%= "class='active'" %> <% end %>"><%= link_to "Plan Management", :action => "plan" %></li>
+			<li <% if @setting_nav_id.to_s == 'status' %> <%= "class='active'" %> <% end %>"><%= link_to "Status Management", :action => "status" %></li>
+		</ul>
+	</div>
+	<div class="main">
+		<% flash.each do |name, msg| %>
+			<% if name.to_s == 'setting_notice' %>
+				<%= content_tag :div, msg, :id => "flash_#{name}", :class => 'alert alert-success' %>
+			<% elsif name.to_s == 'setting_warning' %>
+				<%= content_tag :div, msg, :id => "flash_#{name}", :class => 'alert alert-warning' %>
+			<% elsif name.to_s == 'setting_info' %>
+				<%= content_tag :div, msg, :id => "flash_#{name}", :class => 'alert alert-info' %>
+			<% elsif name.to_s == 'setting_error' %>
+				<%= content_tag :div, msg, :id => "flash_#{name}", :class => 'alert alert-danger' %>
+			<% end %>
+		<% end %>

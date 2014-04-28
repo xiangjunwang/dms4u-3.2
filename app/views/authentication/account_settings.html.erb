@@ -1,0 +1,12 @@
+<%= form_for @user, :as => :user, :url => account_settings_path, :html => {:class => 'edit_user', :role => 'form'}, :method => :post do |f| %>
+		<h2>Account Settings</h2>
+		<%= f.text_field :username, :class => 'form-control', :placeholder => 'username: (leave blank if unnecessary)' %>
+		<%= show_field_error(@user, :username) %>
+		<%= f.password_field :password, :class => 'form-control', :placeholder => 'Current Password' %>
+		<%= show_field_error(@user, :password) %>
+		<%= f.password_field :new_password, :class => 'form-control', :placeholder => 'New password' %>
+		<%= show_field_error(@user, :new_password) %>
+		<%= f.password_field :new_password_confirmation, :class => 'form-control', :placeholder => 'New password Confirmation' %>
+		<%= show_field_error(@user, :new_password_confirmation) %>
+		<%= f.submit 'Update', :class => 'btn btn-primary btn-block form-control' %>
+<% end %>

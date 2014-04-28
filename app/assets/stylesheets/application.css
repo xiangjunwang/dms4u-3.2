@@ -1,0 +1,107 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+*/
+
+body > .navbar {
+	padding-top: 30px;
+	font-size: 18px;
+	border-bottom: solid 1px #ddd;}
+	body > .navbar > .container > ul.nav {
+		border-bottom: none;}
+		body >.navbar .container > ul.nav li a {
+			padding-top: 18px;
+			padding-bottom: 15px;}
+	body > .navbar >.container > div.btn-group {
+		float: right;}
+	body > .navbar >.container > div#navigator {
+		float: right;}
+
+body > .container {
+	padding-top: 100px;}
+	body > .container form.sign_in {
+		max-width: 330px;
+		min-height: 330px;
+		padding: 15px;
+		margin: 0 auto;}
+	body > .container form.new_user {
+		min-height: 430px;
+		max-width: 330px;
+		padding: 15px;
+		margin: 0 auto;}
+	body > .container form.edit_user {
+		max-width: 330px;
+		min-height: 370px;
+		padding: 15px;
+		margin: 0 auto;}
+		body > .container form .form-control {
+			width: 100%;
+			position: relative;
+			height: auto;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+			padding: 10px;
+			font-size: 16px;}
+		body > .container form .error_message {
+			margin-top: -10px;
+			margin-bottom: 10px;
+			color: red;}
+	body > .container form.new_unit {
+		min-height: 430px;
+		max-width: 330px;
+		padding: 15px;}
+	body > .container form.edit_unit {
+		min-height: 430px;
+		max-width: 330px;
+		padding: 15px;}
+	body > .container form.delete_unit {
+		min-height: 430px;
+		max-width: 330px;
+		padding: 15px;}
+	body > .container div.sidebar {
+		position: fixed;
+		top: 85px;
+		bottom: 60px;
+		left: 0;
+		z-index: 1000;
+		display: block;
+		padding: 20px;
+		overflow-x: hidden;
+		overflow-y: auto;
+		background-color: #f5f5f5;
+		border-right: 1px solid #eee;}
+		body > .container div.sidebar .nav-sidebar{
+			margin-right: -21px;
+			margin-bottom: 20px;
+			margin-left: -100px;}
+			body > .container div.sidebar .nav-sidebar > li {
+				position: relative;
+				display: block;}
+				body > .container div.sidebar .nav-sidebar > li a {
+					font-size: 16px;
+					padding: 10px 20px 10px 200px;}
+				body > .container div.sidebar .nav-sidebar > .active a {
+					color: #fff;
+					background-color: #428bca;}
+	body > .container div.main {
+		padding-top: 50px;
+		padding-left: 300px;}
+
+body > #footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+	background-color: #f5f5f5;}
+	body > #footer .container p {
+		margin: 20px 0;}
