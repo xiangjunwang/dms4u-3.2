@@ -1,0 +1,14 @@
+<div class='row'>
+	<%= render(:partial => 'header') %>
+		<h2>Delete Plan</h2>
+		<div class='col-sm-2 col-sm-offset-10'>
+			<%= link_to "Back to Plan list", :action => 'plan', :html => {:class => 'form-control'} %>
+		</div>
+		<br />
+		<%= form_for :plan, :url => {:action => 'destroy_plan', :id => @plan.id}, :html => {:class => 'delete_plan', :role => 'form'}, :method => 'post' do |f| %>
+			<h4 class='reference-name'>Plan name : <%= @plan.name %></h4>
+			<p class='form-control'>Are you sure you want to permanently delete this plan?</p>
+			<%= f.submit "Delete Plan", :class => "form-control" %>
+		<% end %> 
+	</div>
+</div>

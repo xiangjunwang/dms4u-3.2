@@ -1,0 +1,13 @@
+<div class='row'>
+	<%= render(:partial => 'header') %>
+		<h2>Create new Role</h2>
+		<div class='col-sm-2 col-sm-offset-10'>
+			<%= link_to "Back to Role list", :action => 'role', :html => {:class => 'form-control'} %>
+		</div>
+		<br />
+		<%= form_for @role, :as => :role, :url => {:action => 'register_role'}, :html => {:class => 'new_role', :role => 'form'}, :method => 'post' do |f| %>
+			<%= f.text_field :name, :placeholder => 'Role name', :class => 'form-control' %>
+			<%= f.submit "Create Role", :class => "form-control" %>
+		<% end %> 
+	</div>
+</div>

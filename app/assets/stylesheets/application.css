@@ -60,11 +60,19 @@ body > .container {
 		min-height: 430px;
 		max-width: 330px;
 		padding: 15px;}
-	body > .container form.edit_unit {
-		min-height: 430px;
-		max-width: 330px;
-		padding: 15px;}
-	body > .container form.delete_unit {
+	body > .container form.edit_unit,
+					  form.delete_unit,
+					  form.new_plan,
+					  form.edit_plan,
+					  form.delete_plan,
+					  form.new_role,
+					  form.delete_role,
+					  form.new_position, 
+					  form.edit_position,
+					  form.delete_position,
+					  form.new_status,
+					  form.edit_status,
+					  form.delete_status {
 		min-height: 430px;
 		max-width: 330px;
 		padding: 15px;}

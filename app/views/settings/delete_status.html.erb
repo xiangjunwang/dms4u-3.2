@@ -1,0 +1,14 @@
+<div class='row'>
+	<%= render(:partial => 'header') %>
+		<h2>Delete Status</h2>
+		<div class='col-sm-2 col-sm-offset-10'>
+			<%= link_to "Back to Status list", :action => 'status', :html => {:class => 'form-control'} %>
+		</div>
+		<br />
+		<%= form_for :status, :url => {:action => 'destroy_status', :id => @status.id}, :html => {:class => 'delete_status', :role => 'form'}, :method => 'post' do |f| %>
+			<h4 class='reference-name'>Status name : <%= @status.name %></h4>
+			<p class='form-control'>Are you sure you want to permanently delete this status?</p>
+			<%= f.submit "Delete Status", :class => "form-control" %>
+		<% end %> 
+	</div>
+</div>

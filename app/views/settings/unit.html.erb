@@ -16,7 +16,7 @@
 			<tr class="<%= cycle('odd', 'even') %>">
 				<td><%= unit.id %></td>
 				<td><%= unit.name %></td>
-				<td><%= unit.name %></td>
+				<td><%= unit.leader %></td>
 				<td><%= unit.users.size %></td>
 				<td class='actions'>
 					<%= link_to('Edit', {:action => 'edit_unit', :id => unit.id}, :class => 'form-control') %>

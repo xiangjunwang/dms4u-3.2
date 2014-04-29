@@ -1,5 +1,25 @@
 <div class='row'>
 	<%= render(:partial => 'header') %>
-		<h2>Status</h2>
+		<h2>Statuses</h2>
+		<div class='col-sm-2 col-sm-offset-10'>
+			<%= link_to "New Status", :action => 'new_status', :html => {:class => 'form-control'} %>
+		</div>
+		<table class="table">
+			<tr class='header'>
+				<th>&nbsp;</th>
+				<th>Name</th>
+				<th>Actions</th>
+			</tr>
+			<% @statuses.each do |status| %>
+			<tr class="<%= cycle('odd', 'even') %>">
+				<td><%= status.id %></td>
+				<td><%= status.name %></td>
+				<td class='actions'>
+					<%= link_to('Edit', {:action => 'edit_status', :id => status.id}, :class => 'form-control') %>
+					<%= link_to('Delete', {:action => 'delete_status', :id => status.id}, :class => 'form-control') %>
+				</td>
+			</tr>
+			<% end %>
+		</table>
 	</div>
 </div>

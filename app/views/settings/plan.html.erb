@@ -8,19 +8,17 @@
 			<tr class='header'>
 				<th>&nbsp;</th>
 				<th>Name</th>
-				<th>Leader</th>
-				<th>Member size</th>
+				<th>Standard</th>
 				<th>Actions</th>
 			</tr>
-			<% @units.each do |unit| %>
+			<% @plans.each do |plan| %>
 			<tr class="<%= cycle('odd', 'even') %>">
-				<td><%= unit.id %></td>
-				<td><%= unit.name %></td>
-				<td><%= unit.name %></td>
-				<td><%= unit.users.size %></td>
+				<td><%= plan.id %></td>
+				<td><%= plan.name %></td>
+				<td><%= plan.standard %></td>
 				<td class='actions'>
-					<%= link_to('Edit', {:action => 'edit_unit', :id => unit.id}, :class => 'form-control') %>
-					<%= link_to('Delete', {:action => 'delete_unit', :id => unit.id}, :class => 'form-control') %>
+					<%= link_to('Edit', {:action => 'edit_plan', :id => plan.id}, :class => 'form-control') %>
+					<%= link_to('Delete', {:action => 'delete_plan', :id => plan.id}, :class => 'form-control') %>
 				</td>
 			</tr>
 			<% end %>

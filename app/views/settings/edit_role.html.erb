@@ -1,0 +1,13 @@
+<div class='row'>
+	<%= render(:partial => 'header') %>
+		<h2>Edit Role</h2>
+		<div class='col-sm-2 col-sm-offset-10'>
+			<%= link_to "Back to Role list", :action => 'role', :html => {:class => 'form-control'} %>
+		</div>
+		<br />
+		<%= form_for @role, :as => :role, :url => {:action => 'update_role', :id => @role.id}, :html => {:class => 'new_role', :role => 'form'}, :method => 'post' do |f| %>
+			<%= f.text_field :name, :placeholder => 'Role name', :class => 'form-control' %>
+			<%= f.submit "Update Role", :class => "form-control" %>
+		<% end %> 
+	</div>
+</div>

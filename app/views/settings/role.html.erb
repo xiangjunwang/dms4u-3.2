@@ -2,17 +2,28 @@
 	<%= render(:partial => 'header') %>
 		<h2>Roles</h2>
 		<div class='col-sm-2 col-sm-offset-10'>
-			<%= link_to "New Unit", :action => 'new_unit', :html => {:class => 'form-control'} %>
+			<%= link_to "New Role", :action => 'new_role', :html => {:class => 'form-control'} %>
 		</div>
 		<table class="table">
 			<tr class='header'>
 				<th>&nbsp;</th>
 				<th>Name</th>
-				<th>Leader</th>
 				<th>Member size</th>
 				<th>Actions</th>
 			</tr>
-			
+			<% @roles.each do |role| %>
+			<tr>
+				<td><%= role.id %></td>
+				<td><%= role.name %></td>
+				<td><%= role.users.size %></td>
+				<td class='actions'>
+					<%= link_to('Edit', {:action => 'edit_role', :id => role.id}, :class => 'form-control') %>
+					<%= link_to('Delete', {:action => 'delete_role', :id => role.id}, :class => 'form-control') %>
+				</td>
+			</tr>
+			<% end %>
+			<tr>
+			</tr>
 		</table>
 	</div>
 </div>
