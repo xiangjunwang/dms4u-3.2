@@ -1,0 +1,9 @@
+<%= f.text_field :username, :placeholder => 'Username', :class => 'form-control' %>
+<%= f.password_field :password, :placeholder => 'Password', :class => 'form-control' %>
+<%= f.text_field :email, :placeholder => 'Email', :class => 'form-control' %>
+<%= f.password_field :email_password, :placeholder => 'Email Password', :class => 'form-control' %>
+<%= f.select :unit_id, @all_units.insert(0, "Select an unit..."), {}, {:class => 'form-control', :placeholder => 'Choose one of unit...'} %>
+<%= f.select :role_id, @all_roles.insert(0, "Select an role..."), {}, {:class => 'form-control'} %>
+<%= f.select :position_id, @all_positions.insert(0, "Select an position..."), {}, {:class => 'form-control'} %>
+<%= f.password_field :password, :placeholder => 'Password', :class => 'form-control' %>
+<%= f.password_field :password_confirmation, :placeholder => 'Password Confirmation', :class => 'form-control' %>

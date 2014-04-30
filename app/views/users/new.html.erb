@@ -1,0 +1,7 @@
+<div class='container'>
+	<%= link_to "Back to User list", :action => 'list' %>
+	<%= form_for :user, :url => {:action => 'register'}, :html => {:class => 'new_user', :role => 'form'} do |f| %>
+	<%= render :partial => 'form', :locals => {:f => f, :user => @user} %>
+		<%= f.submit "Create User", :class => "form-control" %>
+	<% end %>
+</div>

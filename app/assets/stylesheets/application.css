@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require_tree .
+ *= require bootstrap-datepicker3
 */
 
 body > .navbar {
@@ -72,7 +73,10 @@ body > .container {
 					  form.delete_position,
 					  form.new_status,
 					  form.edit_status,
-					  form.delete_status {
+					  form.delete_status,
+					  form.new_country,
+					  form.edit_country,
+					  form.delete_country {
 		min-height: 430px;
 		max-width: 330px;
 		padding: 15px;}

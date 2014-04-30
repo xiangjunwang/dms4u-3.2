@@ -12,29 +12,31 @@
 		<div class='container'>
 			<% if current_user %>
 				<ul class='nav nav-tabs'>
-					<li id='nav-dashboard' 
-						<% if @nav_id == 'nav-dashboard' %> 
+					<li <% if @nav_id == 'nav-dashboard' %> 
 							<%= "class='active'" %>
 						<% end %>
 					 	>
 					 	<%= link_to 'Dashboard', :controller => 'dashboard' %>
 					 </li>
-					<li id='nav-user' 
-						<% if @nav_id == 'nav-users' %>
+					<li <% if @nav_id == 'nav-users' %>
 							<%= "class='active'" %>
 						<% end %>
 						>
-						<%= link_to 'User Management', :controller => 'users', :action => 'list' %>
+						<%= link_to 'Users', :controller => 'users', :action => 'list' %>
 					</li>
-					<li id='nav-setting'
-						<% if @nav_id == 'nav-settings' %>
+					<li <% if @nav_id == 'nav-settings' %>
 							<%= "class='active'" %>
 						<% end %>
 						>
 						<%= link_to 'Settings', :controller => 'settings', :action => 'unit' %>
 					</li>
-					<li id='nav-blog'
-						<% if @nav_id == 'nav-blogs' %>
+					<li <% if @nav_id == 'nav-accounts' %>
+							<%= "class='active'" %>
+						<% end %>
+						>
+						<%= link_to 'Accounts', :controller => 'accounts', :action => 'index' %>
+					</li>
+					<li <% if @nav_id == 'nav-blogs' %>
 							<%= "class='active'" %>
 						<% end %>
 						>

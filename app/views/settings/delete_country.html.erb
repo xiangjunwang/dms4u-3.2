@@ -1,0 +1,14 @@
+<div class='row'>
+	<%= render(:partial => 'header') %>
+		<h2>Delete Country</h2>
+		<div class='col-sm-2 col-sm-offset-10'>
+			<%= link_to "Back to Countries", :action => 'country', :html => {:class => 'form-control'} %>
+		</div>
+		<br />
+		<%= form_for :country, :url => {:action => 'destroy_country', :id => @country.id}, :html => {:class => 'delete_country', :role => 'form'}, :method => 'post' do |f| %>
+			<h4 class='reference-name'>Country name : <%= @country.name %></h4>
+			<p class='form-control'>Are you sure you want to permanently delete this country?</p>
+			<%= f.submit "Delete Country", :class => "form-control" %>
+		<% end %> 
+	</div>
+</div>

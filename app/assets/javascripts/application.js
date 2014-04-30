@@ -13,7 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require_tree .
+//= require_tree
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.fr.js
 
 var clearActiveTagFromMenuItem = function() {
 	$($('body > .navbar .container .nav li.active')[0]).removeClass('active');
@@ -34,4 +37,8 @@ var injectScriptToMenuItems = function() {
 
 $(document).ready(function() {
 	injectScriptToMenuItems();
+
+	$(document).on("focus", "[data-behaviour~='datepicker']", function(e){
+	    $(this).datepicker({"format": "yyyy-mm-dd", "weekStart": 1, "autoclose": true})
+	});
 });

@@ -175,7 +175,7 @@ class SettingsController < ApplicationController
 			redirect_to :action => 'position'
 		else
 			flash[:setting_error] = 'Position deleting failed.'
-			render 'edit_position'
+			render 'delete_position'
 		end
 	end
 
@@ -233,7 +233,7 @@ class SettingsController < ApplicationController
 			redirect_to :action => 'plan'
 		else
 			flash[:setting_error] = 'Plan deleting failed.'
-			render 'edit_position'
+			render 'delete_plan'
 		end
 	end
 
@@ -292,7 +292,64 @@ class SettingsController < ApplicationController
 			redirect_to :action => 'status'
 		else
 			flash[:setting_error] = 'Status deleting failed.'
-			render 'edit_position'
+			render 'delete_status'
+		end
+	end
+
+	def country
+		@setting_nav_id = 'country'
+		@countries = Country.all
+	end
+
+	def new_country
+		@setting_nav_id = 'country'
+		@country = Country.find_by_id(params[:id])
+	end
+
+	def register_country
+		country = Country.new(params[:country])
+		if country.valid?
+			country.save
+			flash[:setting_notice] = 'A country created successfully.'
+			redirect_to :action => 'country'
+		else
+			@country = Country.find_by_id(params[:id])
+			flash[:setting_error] = 'Country creation failed.'
+			render 'new'
+		end
+	end
+
+	def edit_country
+		@setting_nav_id = 'country'
+		@country = Country.find_by_id(params[:id])
+	end
+
+	def update_country
+		country = Country.find_by_id(params[:id])
+		if country.update_attributes(params[:country])
+			flash[:setting_notice] = 'A country updated successfully.'
+			redirect_to :action => 'country'
+		else
+			flash[:setting_error] = 'Country updating failed.'
+			@country = Country.find_by_id(params[:id])
+			render 'edit_country'
+		end
+	end
+
+	def delete_country
+		@setting_nav_id = 'country'
+		@country = Country.find_by_id(params[:id])
+	end
+
+	def destroy_country
+		@setting_nav_id = 'country'
+		country = Country.find_by_id(params[:id])
+		if country.destroy
+			flash[:setting_notice] = 'A country deleted successfully.'
+			redirect_to :action => 'country'
+		else
+			flash[:setting_error] = 'Country deleting failed.'
+			render 'delete_country'
 		end
 	end
 

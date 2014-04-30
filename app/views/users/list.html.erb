@@ -1,18 +1,50 @@
 <div class="panel panel-default">
 	<!-- Default panel contents -->
 	<div class="panel-heading">Users list</div>
-
+	<div class='col-sm-2 col-sm-offset-10'>
+		<%= link_to "New User", :action => 'new', :html => {:class => 'form-control'} %>
+	</div>
 	<!-- Table -->
 	<table class="table">
 		<tr class='header'>
 			<th>Name</th>
 			<th>Username</th>
+			<th>Birthday</th>
+			<th>Role</th>
+			<th>Unit</th>
+			<th>Position</th>
+			<th>Accounts</th>
 			<th>Actions</th>
 		</tr>
 		<% @users.each do |user| %>
 		<tr class="<%= cycle('odd', 'even') %>">
 			<td><%= user.name %></td>
 			<td><%= user.username %></td>
+			<td><%= user.birthday %></td>
+			<td>
+				<% if user.role.nil? %>
+				<%= "Not assigned" %>
+				<% else %>
+				<%= user.role.name %>
+				<% end %>
+			</td>
+			<td>
+				<% if user.unit.nil? %>
+				<%= "Not assigned" %>
+				<% else %>
+				<%= user.unit.name %>
+				<% end %>
+			</td>
+			<td>
+				<% if user.position.nil? %>
+				<%= "Not assigned" %>
+				<% else %>
+				<%= user.position.name %>
+				<% end %>
+			</td>
+			<td>
+				<%= link_to user.accounts.size, {:controller => 'accounts', :action => 'list', :user_id => user.id}, :html => {:class => 'form-control'} %>
+			</td>
 			<td class='actions'>
 				<%= link_to('Edit', {:action => 'edit', :id => user.id}, :class => 'action edit') %>
 				<%= link_to('Delete', {:action => 'delete', :id => user.id}, :class => 'action delete') %>

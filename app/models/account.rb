@@ -13,4 +13,6 @@ class Account < ActiveRecord::Base
 	validates :password, :presence => true
 	validates :email, :presence => true, :length => {:maximum => 200}, :uniqueness => true, :format => EMAIL_REGEX
 	validates :email_password, :presence => true
+
+	scope :sorted, order('accounts.id ASC')
 end

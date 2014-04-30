@@ -1,0 +1,68 @@
+<div class="panel panel-default">
+	<!-- Default panel contents -->
+	<div class="panel-heading">Accounts list</div>
+	<div class='col-sm-2 col-sm-offset-10'>
+		<%= link_to "New Account", :action => 'new', :html => {:class => 'form-control'} %>
+	</div>
+	<!-- Table -->
+	<table class="table">
+		<tr class='header'>
+			<th>Index</th>
+			<th>User name</th>
+			<th>Username</th>
+			<th>Password</th>
+			<th>Email</th>
+			<th>Email password</th>
+			<th>Country</th>
+			<th>Workplace</th>
+			<th>Status</th>
+			<th>Actions</th>
+		</tr>
+		<% ind = 0 %>
+		<% @accounts.each do |account| %>
+		<tr class="<%= cycle('odd', 'even') %>">
+			<td><%= ind %></td>
+			<td>
+				<% if account.user.nil? %>
+					<%= 'Not assigned' %>
+				<% else %>
+					<%= account.user.name %>
+				<% end %>
+			</td>
+			<td><%= account.username %></td>
+			<td><%= account.password %></td>
+			<td><%= account.email %></td>
+			<td><%= account.email_password %></td>
+			<td>
+				<% if account.country.nil? %>
+					<%= "Not assigned" %>
+				<% else %>
+					<%= account.country.name %>
+				<% end %>
+			</td>
+			<td>
+				<% if account.workplace.nil? %>
+					<%= "Not assigned" %>
+				<% else %>
+					<%= account.workplace.name %>
+				<% end %>
+			</td>
+			<td>
+				<% if account.status.nil? %>
+					<%= "Not assigned" %>
+				<% else %>
+					<%= account.status.name %>
+				<% end %>
+			</td>
+			<td>
+				Not set
+			</td>
+			<td class='actions'>
+				<%= link_to('Edit', {:action => 'edit', :id => user.id}, :class => 'action edit') %>
+				<%= link_to('Delete', {:action => 'delete', :id => user.id}, :class => 'action delete') %>
+			</td>
+		</tr>
+		<% ind = ind + 1 %>
+		<% end %>
+	</table>
+</div>

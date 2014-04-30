@@ -1,5 +1,15 @@
 Dms4u32::Application.routes.draw do
 
+  get "accounts/index"
+
+  get "accounts/list"
+
+  get "accounts/new"
+
+  get "accounts/edit"
+
+  get "accounts/delete"
+
   root :to => 'dashboard#index'
 
   post "sign_in" => "authentication#login"

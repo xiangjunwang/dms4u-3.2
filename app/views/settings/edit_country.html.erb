@@ -1,0 +1,13 @@
+<div class='row'>
+	<%= render(:partial => 'header') %>
+		<h2>Edit Country</h2>
+		<div class='col-sm-2 col-sm-offset-10'>
+			<%= link_to "Back to Country list", :action => 'country', :html => {:class => 'form-control'} %>
+		</div>
+		<br />
+		<%= form_for :country, :url => {:action => 'update_country', :id => @country.id}, :html => {:class => 'edit_country', :role => 'form'}, :method => 'post' do |f| %>
+			<%= f.text_field :name, :placeholder => 'Country Name', :class => 'form-control' %>
+			<%= f.submit "Update Country", :class => "form-control" %>
+		<% end %> 
+	</div>
+</div>
