@@ -1,2 +1,7 @@
-<h1>Accounts#edit</h1>
-<p>Find me in app/views/accounts/edit.html.erb</p>
+<div class='container'>
+	<%= link_to "Back to Account list", :action => 'list' %>
+	<%= form_for :account, :url => {:action => 'update', :id => @account.id}, :html => {:class => 'new_account', :role => 'form'} do |f| %>
+	<%= render :partial => 'form', :locals => {:f => f, :account => @account} %>
+		<%= f.submit "Update Account", :class => "form-control" %>
+	<% end %>
+</div>

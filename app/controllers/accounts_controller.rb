@@ -3,6 +3,7 @@ class AccountsController < ApplicationController
 	layout 'admin'
 	before_filter :markMenuItem
 	before_filter :checkWritePermision, :only => [:edit, :delete, :new]
+	before_filter :settingListForOptions, :only => [:edit, :new]
 
 	def index
 		list
@@ -22,9 +23,6 @@ class AccountsController < ApplicationController
 
 	def new
 		@account = Account.new
-		@all_countries = Country.options_for_list
-		@all_workplaces = Workplace.options_for_list
-		@all_statuses = Status.options_for_list
 	end
 
 	def register
@@ -48,9 +46,42 @@ class AccountsController < ApplicationController
 	end
 
 	def edit
+		@account = Account.find_by_id(params[:id])
+	end
+
+	def update
+		account = Account.find_by_id(params[:id])
+		account.username = params[:account][:username]
+		account.password = params[:account][:password]
+		account.email = params[:account][:email]
+		account.email_password = params[:account][:email_password]
+		if account.save
+			Country.find(params[:account][:country_id]).accounts << account unless params[:account][:country_id] > 0
+			Workplace.find(params[:account][:workplace_id]).accounts << account unless params[:account][:workplace_id] > 0
+			Status.find(params[:account][:status_id]).accounts << account unless params[:account][:status_id] > 0
+			account.save
+			flash[:notice] = 'An account updated successfully.'
+			redirect_to :action => 'list'
+		else
+			@account = Account.find_by_id(params[:id])
+			flash[:error] = 'Account modification was updated successfully.'
+			render 'edit'
+		end
 	end
 
 	def delete
+		@account = Account.find_by_id(params[:id])
+	end
+
+	def destroy
+		account = Account.find_by_id(params[:id])
+		if account.destroy
+			flash[:notice] = 'An account deleted successfully.'
+			redirect_to :action => 'list'
+		else
+			@account = Account.find_by_id(params[:id])
+			render 'delete'
+		end
 	end
 
 	private
@@ -64,6 +95,12 @@ class AccountsController < ApplicationController
 				flash[:warning] = 'You have no write permision, so forced to redirect to this page'
 				redirect_to :action => 'list'
 			end
+		end
+
+		def settingListForOptions
+			@all_countries = Country.options_for_list
+			@all_workplaces = Workplace.options_for_list
+			@all_statuses = Status.options_for_list
 		end
 
 end

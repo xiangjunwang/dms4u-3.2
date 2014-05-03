@@ -38,6 +38,12 @@
 						>
 						<%= link_to 'Accounts', :controller => 'accounts', :action => 'list' %>
 					</li>
+					<li <% if @nav_id == 'nav-transactions' %>
+							<%= "class='active'" %>
+						<% end %>
+						>
+						<%= link_to 'Transactions', :controller => 'transactions', :action => 'list' %>
+					</li>
 					<li <% if @nav_id == 'nav-blogs' %>
 							<%= "class='active'" %>
 						<% end %>

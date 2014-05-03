@@ -80,7 +80,8 @@ body > .container {
 					  form.new_workplace,
 					  form.edit_workplace,
 					  form.delete_workplace,
-					  form.new_account {
+					  form.new_account,
+					  form.delete_account {
 		min-height: 430px;
 		margin: 0 auto;
 		max-width: 330px;

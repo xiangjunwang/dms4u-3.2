@@ -1,7 +1,11 @@
 <%= f.text_field :username, :placeholder => 'Username', :class => 'form-control' %>
+<%= show_field_error(@account, :username) %>
 <%= f.text_field :password, :placeholder => 'Password', :class => 'form-control' %>
+<%= show_field_error(@account, :password) %>
 <%= f.text_field :email, :placeholder => 'Email address', :class => 'form-control' %>
+<%= show_field_error(@account, :email) %>
 <%= f.text_field :email_password, :placeholder => 'Email Password', :class => 'form-control' %>
-<%= f.select :country_id, @all_countries.insert(0, "Select a country..."), {}, {:class => 'form-control', :placeholder => 'Choose one of unit...'} %>
+<%= show_field_error(@account, :email_password) %>
+<%= f.select :country_id, @all_countries.insert(0, "Select a country..."), {}, {:class => 'form-control'} %>
 <%= f.select :workplace_id, @all_workplaces.insert(0, "Select a workspace..."), {}, {:class => 'form-control'} %>
 <%= f.select :status_id, @all_statuses.insert(0, "Select a status..."), {}, {:class => 'form-control'} %>
