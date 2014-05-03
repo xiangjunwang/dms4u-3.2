@@ -17,7 +17,8 @@
 						<% end %>
 					 	>
 					 	<%= link_to 'Dashboard', :controller => 'dashboard' %>
-					 </li>
+					</li>
+					<% if current_user.role.name == 'Administrator' %>
 					<li <% if @nav_id == 'nav-users' %>
 							<%= "class='active'" %>
 						<% end %>
@@ -30,11 +31,12 @@
 						>
 						<%= link_to 'Settings', :controller => 'settings', :action => 'unit' %>
 					</li>
+					<% end %>
 					<li <% if @nav_id == 'nav-accounts' %>
 							<%= "class='active'" %>
 						<% end %>
 						>
-						<%= link_to 'Accounts', :controller => 'accounts', :action => 'index' %>
+						<%= link_to 'Accounts', :controller => 'accounts', :action => 'list' %>
 					</li>
 					<li <% if @nav_id == 'nav-blogs' %>
 							<%= "class='active'" %>

@@ -8,14 +8,12 @@ class BlogsController < ApplicationController
 	end
 
 	def list
-		# User to set menu item active
-		@nav_id = 'nav-blogs'
 	end
 
 	private
 		def markMenuItem
 			# User to set menu item active
-			@nav_id = 'nav-accounts'
+			@nav_id = 'nav-blogs'
 		end
 
 end

@@ -43,7 +43,11 @@
 				<% end %>
 			</td>
 			<td>
-				<%= link_to user.accounts.size, {:controller => 'accounts', :action => 'list', :user_id => user.id}, :html => {:class => 'form-control'} %>
+				<% if user.accounts.size > 0 %>
+					<%= link_to user.accounts.size, {:controller => 'accounts', :action => 'list', :user_id => user.id}, :html => {:class => 'form-control'} %>
+				<% else %>
+					<%= 0 %>
+				<% end %>
 			</td>
 			<td class='actions'>
 				<%= link_to('Edit', {:action => 'edit', :id => user.id}, :class => 'action edit') %>

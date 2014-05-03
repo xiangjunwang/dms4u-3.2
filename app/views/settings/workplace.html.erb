@@ -1,0 +1,27 @@
+<div class='row'>
+	<%= render(:partial => 'header') %>
+		<h2>Workplaces</h2>
+		<div class='col-sm-2 col-sm-offset-10'>
+			<%= link_to "New Workplace", :action => 'new_workplace' %>
+		</div>
+		<table class="table">
+			<tr class='header'>
+				<th>&nbsp;</th>
+				<th>Workplace</th>
+				<th>Accounts</th>
+				<th>Actions</th>
+			</tr>
+			<% @workplaces.each do |workplace| %>
+			<tr class="<%= cycle('odd', 'even') %>">
+				<td><%= workplace.id %></td>
+				<td><%= workplace.name %></td>
+				<td><%= workplace.accounts.size %></td>
+				<td class='actions'>
+					<%= link_to('Edit', {:action => 'edit_workplace', :id => workplace.id}, :class => 'form-control') %>
+					<%= link_to('Delete', {:action => 'delete_workplace', :id => workplace.id}, :class => 'form-control') %>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+</div>

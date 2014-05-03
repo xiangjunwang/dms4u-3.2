@@ -16,7 +16,9 @@
 			<th>Country</th>
 			<th>Workplace</th>
 			<th>Status</th>
+			<% if current_user.role.name == "User" %>
 			<th>Actions</th>
+			<% end %>
 		</tr>
 		<% ind = 0 %>
 		<% @accounts.each do |account| %>
@@ -54,13 +56,12 @@
 					<%= account.status.name %>
 				<% end %>
 			</td>
-			<td>
-				Not set
-			</td>
+			<% if current_user.role.name == "User" %>
 			<td class='actions'>
-				<%= link_to('Edit', {:action => 'edit', :id => user.id}, :class => 'action edit') %>
-				<%= link_to('Delete', {:action => 'delete', :id => user.id}, :class => 'action delete') %>
+				<%= link_to('Edit', {:action => 'edit', :id => account.user.id}, :class => 'action edit') %>
+				<%= link_to('Delete', {:action => 'delete', :id => account.user.id}, :class => 'action delete') %>
 			</td>
+			<% end %>
 		</tr>
 		<% ind = ind + 1 %>
 		<% end %>

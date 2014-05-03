@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
 	layout 'admin'
 
+	before_filter :checkPermision
+
 	def index
 		list
 	end
@@ -82,5 +84,11 @@ class UsersController < ApplicationController
 		def markMenuItem
 			# User to set menu item active
 			@nav_id = 'nav-accounts'
+		end
+
+		def checkPermision
+			unless current_user.role.name == "Administrator"
+				redirect_to :controller => 'dashboard'
+			end
 		end
 end

@@ -76,8 +76,13 @@ body > .container {
 					  form.delete_status,
 					  form.new_country,
 					  form.edit_country,
-					  form.delete_country {
+					  form.delete_country,
+					  form.new_workplace,
+					  form.edit_workplace,
+					  form.delete_workplace,
+					  form.new_account {
 		min-height: 430px;
+		margin: 0 auto;
 		max-width: 330px;
 		padding: 15px;}
 	body > .container div.sidebar {

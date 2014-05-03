@@ -1,0 +1,14 @@
+<div class='row'>
+	<%= render(:partial => 'header') %>
+		<h2>Delete Workplace</h2>
+		<div class='col-sm-2 col-sm-offset-10'>
+			<%= link_to "Back to Workplaces", :action => 'workplace', :html => {:class => 'form-control'} %>
+		</div>
+		<br />
+		<%= form_for :workplace, :url => {:action => 'destroy_workplace', :id => @workplace.id}, :html => {:class => 'delete_workplace', :role => 'form'}, :method => 'post' do |f| %>
+			<h4 class='reference-name'>Workplace name : <%= @workplace.name %></h4>
+			<p class='form-control'>Are you sure you want to permanently delete this workplace?</p>
+			<%= f.submit "Delete Workplace", :class => "form-control" %>
+		<% end %> 
+	</div>
+</div>

@@ -2,7 +2,7 @@ class SettingsController < ApplicationController
 	
 	layout 'admin'
 
-	before_filter :markMenuItem
+	before_filter :markMenuItem,:checkPermision
 
 	def index
 		unit
@@ -303,7 +303,7 @@ class SettingsController < ApplicationController
 
 	def new_country
 		@setting_nav_id = 'country'
-		@country = Country.find_by_id(params[:id])
+		@country = Country.new
 	end
 
 	def register_country
@@ -353,9 +353,73 @@ class SettingsController < ApplicationController
 		end
 	end
 
+	def workplace
+		@setting_nav_id = 'workplace'
+		@workplaces = Workplace.all
+	end
+
+	def new_workplace
+		@setting_nav_id = 'workplace'
+		@workplace = Workplace.new
+	end
+
+	def register_workplace
+		workplace = Workplace.new(params[:workplace])
+		if workplace.valid?
+			workplace.save
+			flash[:setting_notice] = 'A workplace created successfully.'
+			redirect_to :action => 'workplace'
+		else
+			@workplace = Workplace.find_by_id(params[:id])
+			flash[:setting_error] = 'workplace creation failed.'
+			render 'new'
+		end
+	end
+
+	def edit_workplace
+		@setting_nav_id = 'workplace'
+		@workplace = Workplace.find_by_id(params[:id])
+	end
+
+	def update_workplace
+		workplace = Workplace.find_by_id(params[:id])
+		if workplace.update_attributes(params[:workplace])
+			flash[:setting_notice] = 'A workplace updated successfully.'
+			redirect_to :action => 'workplace'
+		else
+			flash[:setting_error] = 'Workplace updating failed.'
+			@workplace = Workplace.find_by_id(params[:id])
+			render 'edit_workplace'
+		end
+	end
+
+	def delete_workplace
+		@setting_nav_id = 'workplace'
+		@workplace = Workplace.find_by_id(params[:id])
+	end
+
+	def destroy_workplace
+		@setting_nav_id = 'workplace'
+		workplace = Workplace.find_by_id(params[:id])
+		if workplace.destroy
+			flash[:setting_notice] = 'A workplace deleted successfully.'
+			redirect_to :action => 'workplace'
+		else
+			flash[:setting_error] = 'Workplace deleting failed.'
+			render 'delete_workplace'
+		end
+	end
+
+
 	private
 		def markMenuItem
 			# User to set menu item active
 			@nav_id = 'nav-settings'
+		end
+
+		def checkPermision
+			unless current_user.role.name == "Administrator"
+				redirect_to :controller => 'dashboard'
+			end
 		end
 end
