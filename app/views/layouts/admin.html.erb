@@ -18,19 +18,23 @@
 					 	>
 					 	<%= link_to 'Dashboard', :controller => 'dashboard' %>
 					</li>
-					<% if current_user.role.name == 'Administrator' %>
-					<li <% if @nav_id == 'nav-users' %>
-							<%= "class='active'" %>
+					<% unless current_user.role.nil? %>
+						<% if current_user.role.name == 'Administrator' %>
+							<li <% if @nav_id == 'nav-users' %>
+									<%= "class='active'" %>
+								<% end %>
+								>
+								<%= link_to 'Users', :controller => 'users', :action => 'list' %>
+							</li>
+							<li <% if @nav_id == 'nav-settings' %>
+								<%= "class='active'" %>
+							<% end %>
+							>
+							<%= link_to 'Settings', :controller => 'settings', :action => 'unit' %>
+						</li>
 						<% end %>
-						>
-						<%= link_to 'Users', :controller => 'users', :action => 'list' %>
-					</li>
-					<li <% if @nav_id == 'nav-settings' %>
-							<%= "class='active'" %>
-						<% end %>
-						>
-						<%= link_to 'Settings', :controller => 'settings', :action => 'unit' %>
-					</li>
+					<% else%>
+						<% flash[:warning] = 'You should create role in database. Please contact administrator.' %>
 					<% end %>
 					<li <% if @nav_id == 'nav-accounts' %>
 							<%= "class='active'" %>

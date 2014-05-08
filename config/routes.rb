@@ -10,7 +10,7 @@ Dms4u32::Application.routes.draw do
 
   get "account_settings" => "authentication#account_settings"
 
-  put "account_settings" => "authentication#set_account_info"
+  post "account_settings" => "authentication#set_account_info"
 
   get "forgot_password" => "authentication#forgot_password"
 

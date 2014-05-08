@@ -87,6 +87,10 @@ class AccountsController < ApplicationController
 	private
 		def markMenuItem
 			# User to set menu item active
+			if current_user.role.nil?
+        flash[:warning] = 'Currenty you have no role. Please contact administrator.'
+        redirect_to :controller => 'dashboard'
+      end
 			@nav_id = 'nav-accounts'
 		end
 
