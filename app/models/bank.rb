@@ -1,6 +1,7 @@
 class Bank < ActiveRecord::Base
 
 	belongs_to :status
+	has_many :bank_transactions
 
 	validates :account_no, :presence => true, :length => {:maximum => 200}, :uniqueness => true
 	validates :swift_code, :presence => true, :length => {:maximum => 200}

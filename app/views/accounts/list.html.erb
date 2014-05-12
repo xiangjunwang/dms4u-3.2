@@ -24,7 +24,7 @@
 		</tr>
 		<% ind = 0 %>
 		<% @accounts.each do |account| %>
-		<tr class="<%= cycle('odd', 'even') %>">
+		<tr class="<%= cycle('odd', 'even') %> table-bordered">
 			<td><%= ind %></td>
 			<td>
 				<% if account.user.nil? %>

@@ -56,9 +56,9 @@ class AccountsController < ApplicationController
 		account.email = params[:account][:email]
 		account.email_password = params[:account][:email_password]
 		if account.save
-			Country.find(params[:account][:country_id]).accounts << account unless params[:account][:country_id] > 0
-			Workplace.find(params[:account][:workplace_id]).accounts << account unless params[:account][:workplace_id] > 0
-			Status.find(params[:account][:status_id]).accounts << account unless params[:account][:status_id] > 0
+			Country.find(params[:account][:country_id]).accounts << account if params[:account][:country_id].to_i > 0
+			Workplace.find(params[:account][:workplace_id]).accounts << account if params[:account][:workplace_id].to_i > 0
+			Status.find(params[:account][:status_id]).accounts << account if params[:account][:status_id].to_i > 0
 			account.save
 			flash[:notice] = 'An account updated successfully.'
 			redirect_to :action => 'list'

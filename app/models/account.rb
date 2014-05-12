@@ -15,4 +15,12 @@ class Account < ActiveRecord::Base
 	validates :email_password, :presence => true
 
 	scope :sorted, order('accounts.id ASC')
+	
+	# def options_for_list
+    # Account.sorted.where("user_id = ?", user_id).map do |account|
+      # [ account.username, account.id ]
+    # end
+  # end
+  
+  # scope :options_for_list, where("user_id=?", self.user_id)
 end

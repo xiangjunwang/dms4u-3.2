@@ -31,7 +31,16 @@ class User < ActiveRecord::Base
 	# 		nil
 	# 	end
 	# end
+	
+	
+	# Getting list of accounts belong to this user
+	def account_id_list
+	  accounts.map do |account|
+	    account.id
+	  end
+	end
 
+  # Innitializer
 	def initialize(attributes = {})
 		super # must allow the active record to initialize!
 		attributes.each do |name, value|
