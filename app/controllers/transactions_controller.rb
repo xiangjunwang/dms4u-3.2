@@ -15,8 +15,8 @@ class TransactionsController < ApplicationController
       @paypal_transactions = PaypalTransaction.proceeded_between(@start_date, @end_date)
 	  else
 	    @wp_transactions = WpTransaction.proceeded_between_by_a_user(current_user, @start_date, @end_date)
-	    @bank_transactions = BankTransaction.proceeded_between(current_user.id, @start_date, @end_date)
-	    @paypal_transactions = PaypalTransaction.proceeded_between(current_user.id, @start_date, @end_date)
+	    @bank_transactions = BankTransaction.proceeded_between_by_a_user(current_user.id, @start_date, @end_date)
+	    @paypal_transactions = PaypalTransaction.proceeded_between_by_a_user(current_user.id, @start_date, @end_date)
 	  end
 	end
 
