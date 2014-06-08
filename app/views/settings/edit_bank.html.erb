@@ -1,0 +1,13 @@
+<div class='row'>
+	<%= render(:partial => 'header') %>
+		<h2>Edit Bank</h2>
+		<div class='col-sm-2 col-sm-offset-10'>
+			<%= link_to "Back to Bank list", :action => 'bank', :html => {:class => 'form-control'} %>
+		</div>
+		<br />
+		<%= form_for :bank, :url => {:action => 'update_bank', :id => @bank.id}, :html => {:class => 'delete_bank', :role => 'form'} do |f| %>
+			<%= render :partial => 'bank_form', :locals => {:f => f, :bank => @bank} %>
+			<%= f.submit "Update Bank", :class => "form-control" %>
+		<% end %>
+	</div>
+</div>

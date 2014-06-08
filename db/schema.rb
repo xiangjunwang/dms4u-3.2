@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140428182608) do
+ActiveRecord::Schema.define(:version => 19) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -31,8 +31,12 @@ ActiveRecord::Schema.define(:version => 20140428182608) do
     t.integer  "bank_id"
     t.float    "amount"
     t.date     "transaction_date"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "sender_account_no"
+    t.string   "sender_swift_code"
+    t.string   "sender_name"
+    t.string   "sender_address"
   end
 
   create_table "banks", :force => true do |t|
@@ -63,8 +67,12 @@ ActiveRecord::Schema.define(:version => 20140428182608) do
     t.integer  "paypal_id"
     t.float    "amount"
     t.date     "transaction_date"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "sender_account_no"
+    t.string   "sender_swift_code"
+    t.string   "sender_name"
+    t.string   "sender_email"
   end
 
   create_table "paypals", :force => true do |t|
@@ -76,11 +84,10 @@ ActiveRecord::Schema.define(:version => 20140428182608) do
   end
 
   create_table "plans", :force => true do |t|
-    t.float    "standard"
-    t.float    "percent"
+    t.string   "name"
+    t.float    "amount"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "name"
   end
 
   create_table "positions", :force => true do |t|

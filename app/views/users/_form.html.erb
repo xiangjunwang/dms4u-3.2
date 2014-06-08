@@ -1,6 +1,6 @@
 	<%= f.text_field :name, :placeholder => 'Full name', :class => 'form-control' %>
 	<%= f.text_field :username, :placeholder => 'Username', :class => 'form-control' %>
-	<%= f.text_field :birthday, 'data-behaviour' => 'datepicker', :class => 'form-control', :placeholder => 'Birthday' %>
+	<%= f.text_field :birthday, :placeholder => 'Birthday', 'data-behaviour' => 'datepicker', :class => 'form-control' %>
 	<%= f.select :unit_id, @all_units.insert(0, "Select an unit..."), {}, {:class => 'form-control', :placeholder => 'Choose one of unit...'} %>
 	<%= f.select :role_id, @all_roles.insert(0, "Select a role..."), {}, {:class => 'form-control'} %>
 	<%= f.select :position_id, @all_positions.insert(0, "Select a position..."), {}, {:class => 'form-control'} %>

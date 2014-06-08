@@ -35,9 +35,15 @@ class User < ActiveRecord::Base
 	
 	# Getting list of accounts belong to this user
 	def account_id_list
-	  accounts.map do |account|
-	    account.id
-	  end
+		accounts.map do |account|
+			account.id
+		end
+	end
+
+	def account_name_n_id_list
+		accounts.map do |account|
+			[account.username, account.id]
+		end
 	end
 
   # Innitializer

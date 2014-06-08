@@ -1,0 +1,29 @@
+<div class='row'>
+	<%= render(:partial => 'header') %>
+		<h2>Paypal accounts</h2>
+		<div class='col-sm-2 col-sm-offset-10'>
+			<%= link_to "New Paypal", :action => 'new_paypal' %>
+		</div>
+		<table class="table">
+			<tr class='header'>
+				<th>&nbsp;</th>
+				<th>Email address</th>
+				<th>Name</th>
+				<th>Status</th>
+				<th>Actions</th>
+			</tr>
+			<% @paypals.each do |paypal| %>
+			<tr class="<%= cycle('odd', 'even') %>">
+				<td><%= paypal.id %></td>
+				<td><%= paypal.email %></td>
+				<td><%= paypal.name %></td>
+				<td><%= paypal.status.name %></td>
+				<td class='actions'>
+					<%= link_to('Edit', {:action => 'edit_paypal', :id => paypal.id}, :class => 'form-control') %>
+					<%= link_to('Delete', {:action => 'delete_paypal', :id => paypal.id}, :class => 'form-control') %>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+</div>

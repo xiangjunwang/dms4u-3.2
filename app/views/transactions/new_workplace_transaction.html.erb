@@ -1,0 +1,9 @@
+<div class="panel panel-default">
+	<!-- Default panel contents -->
+	<h2>Add workplace transaction</h2>
+	<!-- Form to manage workplace transaction -->
+	<%= form_for :transaction, :url => {:action => 'register_workplace_transaction'}, :html => {:class => 'new_account', :role => 'form'} do |f| %>
+		<%= render :partial => 'wp_transaction_form', :locals => {:f => f, :transaction => @transaction} %>
+		<%= f.submit "Register Workplace Transaction", :class => "form-control" %>
+	<% end %>
+</div>

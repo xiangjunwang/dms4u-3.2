@@ -1,0 +1,7 @@
+<%= f.select :bank_id, @banks.insert(0, "Select a bank account..."), {}, {:class => 'form-control'} %>
+<%= f.text_field :sender_account_no, :placeholder => 'Sender account number', :class => 'form-control' %>
+<%= f.text_field :sender_swift_code, :placeholder => 'Sender swift code', :class => 'form-control' %>
+<%= f.text_field :sender_name, :placeholder => 'Sender name', :class => 'form-control' %>
+<%= f.text_field :sender_address, :placeholder => 'Sender physical address', :class => 'form-control' %>
+<%= f.number_field :amount, :placeholder => 'Amount', :class => 'form-control', :step => 0.5, :min => 0 %>
+<%= f.text_field :transaction_date, :placeholder => 'Paid date', 'data-behaviour' => 'datepicker', :class => 'form-control' %>

@@ -7,5 +7,11 @@ class Bank < ActiveRecord::Base
 	validates :swift_code, :presence => true, :length => {:maximum => 200}
 	validates :owner_name, :presence => true, :length => {:maximum => 200}
 	validates :address, :presence => true, :length => {:maximum => 200}
+
+	def self.options_for_list
+		Bank.all.map do |bank|
+			[ bank.account_no, bank.swift_code, bank.owner_name, bank.id ]
+		end
+	end
 	
 end

@@ -1,0 +1,12 @@
+<div class="panel panel-default">
+	<!-- Default panel contents -->
+	<h2>Delete Paypal transaction</h2>
+	<!-- Form to manage paypal transaction -->
+	<%= form_for :transaction, :url => {:action => 'destroy_paypal_transaction', :id => @transaction.id}, :html => {:class => 'new_account', :role => 'form'}, :method => 'post' do |f| %>
+		<h4 class="reference-name">Bank owner Name : <%= @transaction.paypal.name %></h4>
+		<h4 class="reference-name">Sender Name : <%= @transaction.sender_name %></h4>
+		<h4 class="reference-name">Sender email : <%= @transaction.sender_email %></h4>
+		<p class='form-control'>Are you sure you want to permanently delete this Paypal transaction?</p>
+		<%= f.submit "Delete Account", :class => "form-control" %>
+	<% end %>
+</div>

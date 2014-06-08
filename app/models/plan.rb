@@ -1,4 +1,4 @@
 class Plan < ActiveRecord::Base
-	validates :standard, :presence => true
-	validates :percent, :presence => true
+	validates :name, :presence => true
+	validates :amount, :presence => true
 end

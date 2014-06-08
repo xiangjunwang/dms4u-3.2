@@ -1,0 +1,4 @@
+<%= f.select :account_id, @accounts.insert(0, "Select an account..."), {}, {:class => 'form-control'} %>
+<%= f.number_field :amount, :placeholder => 'Amount', :class => 'form-control', :step => 0.5, :min => 0 %>
+<%= f.text_field :transaction_date, :placeholder => 'Withdrawn date', 'data-behaviour' => 'datepicker', :class => 'form-control' %>
+<%= f.text_field :expire_date, :placeholder => 'Returning date', 'data-behaviour' => 'datepicker', :class => 'form-control' %>

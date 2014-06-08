@@ -7,8 +7,7 @@
 		<br />
 		<%= form_for @plan, :as => :plan, :url => {:action => 'register_plan'}, :html => {:class => 'new_plan', :role => 'form'}, :method => 'post' do |f| %>
 			<%= f.text_field :name, :placeholder => 'Plan name', :class => 'form-control' %>
-			<%= f.number_field :standard, :placeholder => 'Standard', :class => 'form-control', :step => 0.5, :min => 0 %>
-			<%= f.number_field :percent, :placeholder => 'Standard', :class => 'form-control', :step => 0.5, :min => 0 %>
+			<%= f.number_field :amount, :placeholder => 'Amount', :class => 'form-control', :step => 0.5, :min => 0 %>
 			<%= f.submit "Create Plan", :class => "form-control" %>
 		<% end %> 
 	</div>

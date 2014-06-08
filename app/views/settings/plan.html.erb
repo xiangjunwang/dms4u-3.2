@@ -8,14 +8,14 @@
 			<tr class='header'>
 				<th>&nbsp;</th>
 				<th>Name</th>
-				<th>Standard</th>
+				<th>Amount</th>
 				<th>Actions</th>
 			</tr>
 			<% @plans.each do |plan| %>
 			<tr class="<%= cycle('odd', 'even') %>">
 				<td><%= plan.id %></td>
 				<td><%= plan.name %></td>
-				<td><%= plan.standard %></td>
+				<td><%= plan.amount %></td>
 				<td class='actions'>
 					<%= link_to('Edit', {:action => 'edit_plan', :id => plan.id}, :class => 'form-control') %>
 					<%= link_to('Delete', {:action => 'delete_plan', :id => plan.id}, :class => 'form-control') %>

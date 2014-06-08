@@ -1,0 +1,33 @@
+<div class='row'>
+	<%= render(:partial => 'header') %>
+		<h2>Bank accounts</h2>
+		<div class='col-sm-2 col-sm-offset-10'>
+			<%= link_to "New Bank", :action => 'new_bank' %>
+		</div>
+		<table class="table">
+			<tr class='header'>
+				<th>&nbsp;</th>
+				<th>Account Number</th>
+				<th>Swift Code</th>
+				<th>Owner Name</th>
+				<th>Owner Address</th>
+				<th>Status</th>
+				<th>Actions</th>
+			</tr>
+			<% @banks.each do |bank| %>
+			<tr class="<%= cycle('odd', 'even') %>">
+				<td><%= bank.id %></td>
+				<td><%= bank.account_no %></td>
+				<td><%= bank.swift_code %></td>
+				<td><%= bank.owner_name %></td>
+				<td><%= bank.address %></td>
+				<td><%= bank.status.name %></td>
+				<td class='actions'>
+					<%= link_to('Edit', {:action => 'edit_bank', :id => bank.id}, :class => 'form-control') %>
+					<%= link_to('Delete', {:action => 'delete_bank', :id => bank.id}, :class => 'form-control') %>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+</div>

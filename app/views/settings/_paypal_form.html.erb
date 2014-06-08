@@ -1,0 +1,3 @@
+	<%= f.text_field :name, :placeholder => 'Name', :class => 'form-control' %>
+	<%= f.text_field :email, :placeholder => 'Email', :class => 'form-control' %>
+	<%= f.select :status_id, @all_statuses.insert(0, "Select a status..."), {}, {:class => 'form-control'} %>

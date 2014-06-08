@@ -7,6 +7,8 @@
 			<li <% if @setting_nav_id.to_s == 'status' %> <%= "class='active'" %> <% end %>"><%= link_to "Status Management", :action => "status" %></li>
 			<li <% if @setting_nav_id.to_s == 'country' %> <%= "class='active'" %> <% end %>"><%= link_to "Country Management", :action => "country" %></li>
 			<li <% if @setting_nav_id.to_s == 'workplace' %> <%= "class='active'" %> <% end %>"><%= link_to "Workplace Management", :action => "workplace" %></li>
+			<li <% if @setting_nav_id.to_s == 'paypal' %> <%= "class='active'" %> <% end %>"><%= link_to "Paypal Management", :action => "paypal" %></li>
+			<li <% if @setting_nav_id.to_s == 'bank' %> <%= "class='active'" %> <% end %>"><%= link_to "Bank Management", :action => "bank" %></li>
 		</ul>
 	</div>
 	<div class="main">

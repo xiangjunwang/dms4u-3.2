@@ -8,4 +8,10 @@ class Paypal < ActiveRecord::Base
 	validates :email, :presence => true, :length => {:maximum => 200}, :uniqueness => true, :format => EMAIL_REGEX
 	validates :name, :presence => true, :length => {:maximum => 200}
 
+	def self.options_for_list
+		Paypal.all.map do |paypal|
+			[ paypal.email, paypal.id ]
+		end
+	end
+
 end

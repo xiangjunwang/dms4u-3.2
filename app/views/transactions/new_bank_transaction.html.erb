@@ -1,0 +1,9 @@
+<div class="panel panel-default">
+	<!-- Default panel contents -->
+	<h2>Add Bank transaction</h2>
+	<!-- Form to manage workplace transaction -->
+	<%= form_for :transaction, :url => {:action => 'register_bank_transaction'}, :html => {:class => 'new_account', :role => 'form'} do |f| %>
+		<%= render :partial => 'bank_transaction_form', :locals => {:f => f, :transaction => @transaction} %>
+		<%= f.submit "Register Bank Transaction", :class => "form-control" %>
+	<% end %>
+</div>

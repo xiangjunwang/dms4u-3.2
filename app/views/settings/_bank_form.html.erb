@@ -1,0 +1,5 @@
+<%= f.text_field :account_no, :placeholder => 'Account Number', :class => 'form-control' %>
+<%= f.text_field :swift_code, :placeholder => 'Swift Code', :class => 'form-control' %>
+<%= f.text_field :owner_name, :placeholder => 'Owner Name', :class => 'form-control' %>
+<%= f.text_field :address, :placeholder => 'Address', :class => 'form-control' %>
+<%= f.select :status_id, @all_statuses.insert(0, "Select a status..."), {}, {:class => 'form-control'} %>

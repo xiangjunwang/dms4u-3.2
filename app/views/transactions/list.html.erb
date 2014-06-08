@@ -6,8 +6,22 @@
 		<%= text_field_tag @end_date, @end_date, 'data-behaviour' => 'datepicker', :class => 'form-control', :placeholder => 'To' %>
 	</div>
 	<% if current_user.role.name == "User" %>
-	<div class='col-sm-2 col-sm-offset-10'>
-		<%= link_to "Add Transaction", :action => 'new', :html => {:class => 'form-control'} %>
+	<div class="dropdown">
+		<button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+			Add Transactions
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+			<li role="presentation">
+				<%= link_to "Add Online Workplace Transaction", :action => 'new_workplace_transaction', :html => {:class => 'form-control', :role => 'menuitem', :tabindex => '-1'} %>
+			</li>
+			<li role="presentation">
+				<%= link_to "Add Bank Transaction", :action => 'new_bank_transaction', :html => {:class => 'form-control', :role => 'menuitem', :tabindex => '-1'} %>
+			</li>
+			<li role="presentation">
+				<%= link_to "Add Paypal Transaction", :action => 'new_paypal_transaction', :html => {:class => 'form-control', :role => 'menuitem', :tabindex => '-1'} %>
+			</li>
+		</ul>
 	</div>
 	<% end %>
 	<!-- Workplace Transaction Table -->
@@ -44,9 +58,9 @@
 				<td><%= transaction.amount %></td>
 				<td class='actions'>
 					<% if current_user.role.name == 'User' %>
-						<%= link_to('Edit', {:action => 'edit', :id => transaction.id, :account_id => transaction.account.id}, :class => 'action edit') %>
-						<%= link_to('Delete', {:action => 'delete', :id => transaction.id, :account_id => transaction.account.id}, :class => 'action delete') %>
-					<% else %>
+						<%= link_to('Edit', {:action => 'edit_workplace_transaction', :id => transaction.id}, :class => 'action edit') %>
+						<%= link_to('Delete', {:action => 'delete_workplace_transaction', :id => transaction.id}, :class => 'action delete') %>
+					<% elsif current_user.role.name == "Manager" %>
 						<%= link_to('confirm', {:action => 'confirm', :id => transaction.id}, :class => 'action confirm') %>
 					<% end %>
 				</td>
@@ -63,7 +77,11 @@
 			<tr class='header'>
 				<th>Index</th>
 				<th>User name</th>
-				<th>Withdrawn date</th>
+				<th>Sender name</th>
+				<th>Sender address</th>
+				<th>Sender account no</th>
+				<th>Sender swift code</th>
+				<th>Paid date</th>
 				<th>Amount</th>
 				<th>Actions</th>
 			</tr>
@@ -78,12 +96,16 @@
 						<%= transaction.user.name %>
 					<% end %>
 				</td>
+				<td><%= transaction.sender_name %></td>
+				<td><%= transaction.sender_address %></td>
+				<td><%= transaction.sender_account_no %></td>
+				<td><%= transaction.sender_swift_code %></td>
 				<td><%= transaction.transaction_date %></td>
 				<td><%= transaction.amount %></td>
 				<td class='actions'>
 					<% if current_user.role.name == 'User' %>
-						<%= link_to('Edit', {:action => 'edit', :id => transaction.id, :user_id => transaction.user.id}, :class => 'action edit') %>
-						<%= link_to('Delete', {:action => 'delete', :id => transaction.id, :user_id => transaction.user.id}, :class => 'action delete') %>
+						<%= link_to('Edit', {:action => 'edit_bank_transaction', :id => transaction.id}, :class => 'action edit') %>
+						<%= link_to('Delete', {:action => 'delete_bank_transaction', :id => transaction.id}, :class => 'action delete') %>
 					<% else %>
 						<%= link_to('confirm', {:action => 'confirm', :id => transaction.id}, :class => 'action confirm') %>
 					<% end %>
@@ -101,7 +123,9 @@
 			<tr class='header'>
 				<th>Index</th>
 				<th>User name</th>
-				<th>Withdrawn date</th>
+				<th>Sender name</th>
+				<th>Sender's email</th>
+				<th>Paid date</th>
 				<th>Amount</th>
 				<th>Actions</th>
 			</tr>
@@ -116,12 +140,14 @@
 						<%= transaction.user.name %>
 					<% end %>
 				</td>
+				<td><%= transaction.sender_name %></td>
+				<td><%= transaction.sender_email %></td>
 				<td><%= transaction.transaction_date %></td>
 				<td><%= transaction.amount %></td>
 				<td class='actions'>
 					<% if current_user.role.name == 'User' %>
-						<%= link_to('Edit', {:action => 'edit', :id => transaction.id, :user_id => transaction.user.id}, :class => 'action edit') %>
-						<%= link_to('Delete', {:action => 'delete', :id => transaction.id, :user_id => transaction.user.id}, :class => 'action delete') %>
+						<%= link_to('Edit', {:action => 'edit_paypal_transaction', :id => transaction.id}, :class => 'action edit') %>
+						<%= link_to('Delete', {:action => 'delete_paypal_transaction', :id => transaction.id}, :class => 'action delete') %>
 					<% else %>
 						<%= link_to('confirm', {:action => 'confirm', :id => transaction.id}, :class => 'action confirm') %>
 					<% end %>
