@@ -9,6 +9,7 @@
 		<tr class='header'>
 			<th>Name</th>
 			<th>Username</th>
+			<th>Email</th>
 			<th>Birthday</th>
 			<th>Role</th>
 			<th>Unit</th>
@@ -20,6 +21,7 @@
 		<tr class="<%= cycle('odd', 'even') %>">
 			<td><%= user.name %></td>
 			<td><%= user.username %></td>
+			<td><%= user.email %></td>
 			<td><%= user.birthday %></td>
 			<td>
 				<% if user.role.nil? %>

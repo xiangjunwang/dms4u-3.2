@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 19) do
+ActiveRecord::Schema.define(:version => 20) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(:version => 19) do
     t.string   "password_reset_token"
     t.datetime "password_expires_after"
     t.string   "authentication_token"
+    t.string   "email"
   end
 
   create_table "workplaces", :force => true do |t|

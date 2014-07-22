@@ -1,3 +1,16 @@
 // Place all the styles related to the transactions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.panel {
+	#sub-nav {
+		margin: 0;
+		list-style: none;
+		li.nav-item {
+			float: left;
+			padding: 2px 5px;
+			margin: 5px 10px;
+			cursor: pointer;
+		}
+	}
+}

@@ -1,9 +1,13 @@
 <div class="panel panel-default">
+	<ul id='sub-nav' class='container'>
+		<li id='wp_transaction' class='nav-item'>Workplace transactions</li>
+		<li id='bank_transaction' class='nav-item'>Bank transactions</li>
+		<li id='paypal_transaction' class='nav-item'>Paypal transactions</li>
+	</ul>
 	<!-- Default panel contents -->
-	<h2>Transactions</h2>
 	<div id='selector'>
-		<%= text_field_tag @start_date, @start_date, 'data-behaviour' => 'datepicker', :class => 'form-control', :placeholder => 'From' %>
-		<%= text_field_tag @end_date, @end_date, 'data-behaviour' => 'datepicker', :class => 'form-control', :placeholder => 'To' %>
+		<%= text_field_tag @start_date, @start_date, 'data-behaviour' => 'datepicker', :class => 'form-control', :placeholder => 'From', :id => "from" %>
+		<%= text_field_tag @end_date, @end_date, 'data-behaviour' => 'datepicker', :class => 'form-control', :placeholder => 'To', :id => "to" %>
 	</div>
 	<% if current_user.role.name == "User" %>
 	<div class="dropdown">
@@ -24,137 +28,146 @@
 		</ul>
 	</div>
 	<% end %>
-	<!-- Workplace Transaction Table -->
-	<% if @wp_transactions.size > 0 %>
-		<table class="table table-bordered">
-			Workplace Transactions.
-			<tr class='header'>
-				<th>Index</th>
-				<th>User name</th>
-				<th>Account name</th>
-				<th>Account email</th>
-				<th>Workpace</th>
-				<th>Withdrawn date</th>
-				<th>Returning date</th>
-				<th>Amount</th>
-				<th>Actions</th>
-			</tr>
-			<% ind = 0 %>
-			<% @wp_transactions.each do |transaction| %>
-			<tr class="<%= cycle('odd', 'even') %>">
-				<td><%= ind %></td>
-				<td>
-					<% if transaction.account.nil? %>
-						<%= 'No information' %>
-					<% else %>
-						<%= transaction.account.user.name %>
-					<% end %>
-				</td>
-				<td><%= transaction.account.username %></td>
-				<td><%= transaction.account.email %></td>
-				<td><%= transaction.account.workplace.name %></td>
-				<td><%= transaction.transaction_date %></td>
-				<td><%= transaction.expire_date %></td>
-				<td><%= transaction.amount %></td>
-				<td class='actions'>
-					<% if current_user.role.name == 'User' %>
-						<%= link_to('Edit', {:action => 'edit_workplace_transaction', :id => transaction.id}, :class => 'action edit') %>
-						<%= link_to('Delete', {:action => 'delete_workplace_transaction', :id => transaction.id}, :class => 'action delete') %>
-					<% elsif current_user.role.name == "Manager" %>
-						<%= link_to('confirm', {:action => 'confirm', :id => transaction.id}, :class => 'action confirm') %>
-					<% end %>
-				</td>
-			</tr>
-			<% ind = ind + 1 %>
-			<% end %>
-		</table>
-	<% end %>
-	
-	<!-- Bank Transaction Table -->
-	<% if @bank_transactions.size > 0 %>
-		<table class="table table-bordered">
-			Bank Transactions.
-			<tr class='header'>
-				<th>Index</th>
-				<th>User name</th>
-				<th>Sender name</th>
-				<th>Sender address</th>
-				<th>Sender account no</th>
-				<th>Sender swift code</th>
-				<th>Paid date</th>
-				<th>Amount</th>
-				<th>Actions</th>
-			</tr>
-			<% ind = 0 %>
-			<% @bank_transactions.each do |transaction| %>
-			<tr class="<%= cycle('odd', 'even') %>">
-				<td><%= ind %></td>
-				<td>
-					<% if transaction.user.nil? %>
-						<%= 'No information' %>
-					<% else %>
-						<%= transaction.user.name %>
-					<% end %>
-				</td>
-				<td><%= transaction.sender_name %></td>
-				<td><%= transaction.sender_address %></td>
-				<td><%= transaction.sender_account_no %></td>
-				<td><%= transaction.sender_swift_code %></td>
-				<td><%= transaction.transaction_date %></td>
-				<td><%= transaction.amount %></td>
-				<td class='actions'>
-					<% if current_user.role.name == 'User' %>
-						<%= link_to('Edit', {:action => 'edit_bank_transaction', :id => transaction.id}, :class => 'action edit') %>
-						<%= link_to('Delete', {:action => 'delete_bank_transaction', :id => transaction.id}, :class => 'action delete') %>
-					<% else %>
-						<%= link_to('confirm', {:action => 'confirm', :id => transaction.id}, :class => 'action confirm') %>
-					<% end %>
-				</td>
-			</tr>
-			<% ind = ind + 1 %>
-			<% end %>
-		</table>
-	<% end %>
-	
-	<!-- Paypal Transaction Table -->
-	<% if @paypal_transactions.size > 0 %>
-		<table class="table table-bordered">
-			Paypal Transactions.
-			<tr class='header'>
-				<th>Index</th>
-				<th>User name</th>
-				<th>Sender name</th>
-				<th>Sender's email</th>
-				<th>Paid date</th>
-				<th>Amount</th>
-				<th>Actions</th>
-			</tr>
-			<% ind = 0 %>
-			<% @paypal_transactions.each do |transaction| %>
-			<tr class="<%= cycle('odd', 'even') %>">
-				<td><%= ind %></td>
-				<td>
-					<% if transaction.user.nil? %>
-						<%= 'No information' %>
-					<% else %>
-						<%= transaction.user.name %>
-					<% end %>
-				</td>
-				<td><%= transaction.sender_name %></td>
-				<td><%= transaction.sender_email %></td>
-				<td><%= transaction.transaction_date %></td>
-				<td><%= transaction.amount %></td>
-				<td class='actions'>
-					<% if current_user.role.name == 'User' %>
-						<%= link_to('Edit', {:action => 'edit_paypal_transaction', :id => transaction.id}, :class => 'action edit') %>
-						<%= link_to('Delete', {:action => 'delete_paypal_transaction', :id => transaction.id}, :class => 'action delete') %>
-					<% else %>
-						<%= link_to('confirm', {:action => 'confirm', :id => transaction.id}, :class => 'action confirm') %>
-					<% end %>
-				</td>
-			</tr>
-			<% ind = ind + 1 %>
-			<% end %>
-		</table>
-	<% end %>
+	<div id='tab-container' class='container'>
+		<div id='tab-content'>
+			<div id='wp-transaction-content' class='tab-content'>
+				<!-- Workplace Transaction Table -->
+				<% if @wp_transactions.size > 0 %>
+					<table class="table table-bordered">
+						Workplace Transactions.
+						<tr class='header'>
+							<th>Index</th>
+							<th>User name</th>
+							<th>Account name</th>
+							<th>Account email</th>
+							<th>Workpace</th>
+							<th>Withdrawn date</th>
+							<th>Returning date</th>
+							<th>Amount</th>
+							<th>Actions</th>
+						</tr>
+						<% ind = 0 %>
+						<% @wp_transactions.each do |transaction| %>
+						<tr class="<%= cycle('odd', 'even') %>">
+							<td><%= ind %></td>
+							<td>
+								<% if transaction.account.nil? %>
+									<%= 'No information' %>
+								<% else %>
+									<%= transaction.account.user.name %>
+								<% end %>
+							</td>
+							<td><%= transaction.account.username %></td>
+							<td><%= transaction.account.email %></td>
+							<td><%= transaction.account.workplace.name %></td>
+							<td><%= transaction.transaction_date %></td>
+							<td><%= transaction.expire_date %></td>
+							<td><%= transaction.amount %></td>
+							<td class='actions'>
+								<% if current_user.role.name == 'User' %>
+									<%= link_to('Edit', {:action => 'edit_workplace_transaction', :id => transaction.id}, :class => 'action edit') %>
+									<%= link_to('Delete', {:action => 'delete_workplace_transaction', :id => transaction.id}, :class => 'action delete') %>
+								<% elsif current_user.role.name == "Manager" %>
+									<%= link_to('confirm', {:action => 'confirm', :id => transaction.id}, :class => 'action confirm') %>
+								<% end %>
+							</td>
+						</tr>
+						<% ind = ind + 1 %>
+						<% end %>
+					</table>
+				<% end %>
+			</div>
+			<div id='bank-transaction-content' class='tab-content'>
+				<!-- Bank Transaction Table -->
+				<% if @bank_transactions.size > 0 %>
+					<table class="table table-bordered">
+						Bank Transactions.
+						<tr class='header'>
+							<th>Index</th>
+							<th>User name</th>
+							<th>Sender name</th>
+							<th>Sender address</th>
+							<th>Sender account no</th>
+							<th>Sender swift code</th>
+							<th>Paid date</th>
+							<th>Amount</th>
+							<th>Actions</th>
+						</tr>
+						<% ind = 0 %>
+						<% @bank_transactions.each do |transaction| %>
+						<tr class="<%= cycle('odd', 'even') %>">
+							<td><%= ind %></td>
+							<td>
+								<% if transaction.user.nil? %>
+									<%= 'No information' %>
+								<% else %>
+									<%= transaction.user.name %>
+								<% end %>
+							</td>
+							<td><%= transaction.sender_name %></td>
+							<td><%= transaction.sender_address %></td>
+							<td><%= transaction.sender_account_no %></td>
+							<td><%= transaction.sender_swift_code %></td>
+							<td><%= transaction.transaction_date %></td>
+							<td><%= transaction.amount %></td>
+							<td class='actions'>
+								<% if current_user.role.name == 'User' %>
+									<%= link_to('Edit', {:action => 'edit_bank_transaction', :id => transaction.id}, :class => 'action edit') %>
+									<%= link_to('Delete', {:action => 'delete_bank_transaction', :id => transaction.id}, :class => 'action delete') %>
+								<% else %>
+									<%= link_to('confirm', {:action => 'confirm', :id => transaction.id}, :class => 'action confirm') %>
+								<% end %>
+							</td>
+						</tr>
+						<% ind = ind + 1 %>
+						<% end %>
+					</table>
+				<% end %>
+			</div>
+			<div id='paypal-transaction-content' class='tab-content'>
+				<!-- Paypal Transaction Table -->
+				<% if @paypal_transactions.size > 0 %>
+					<table class="table table-bordered">
+						Paypal Transactions.
+						<tr class='header'>
+							<th>Index</th>
+							<th>User name</th>
+							<th>Sender name</th>
+							<th>Sender's email</th>
+							<th>Paid date</th>
+							<th>Amount</th>
+							<th>Actions</th>
+						</tr>
+						<% ind = 0 %>
+						<% @paypal_transactions.each do |transaction| %>
+						<tr class="<%= cycle('odd', 'even') %>">
+							<td><%= ind %></td>
+							<td>
+								<% if transaction.user.nil? %>
+									<%= 'No information' %>
+								<% else %>
+									<%= transaction.user.name %>
+								<% end %>
+							</td>
+							<td><%= transaction.sender_name %></td>
+							<td><%= transaction.sender_email %></td>
+							<td><%= transaction.transaction_date %></td>
+							<td><%= transaction.amount %></td>
+							<td class='actions'>
+								<% if current_user.role.name == 'User' %>
+									<%= link_to('Edit', {:action => 'edit_paypal_transaction', :id => transaction.id}, :class => 'action edit') %>
+									<%= link_to('Delete', {:action => 'delete_paypal_transaction', :id => transaction.id}, :class => 'action delete') %>
+								<% else %>
+									<%= link_to('confirm', {:action => 'confirm', :id => transaction.id}, :class => 'action confirm') %>
+								<% end %>
+							</td>
+						</tr>
+						<% ind = ind + 1 %>
+						<% end %>
+					</table>
+				<% end %>
+			</div>
+		</div>
+	</div>
+				
 </div>

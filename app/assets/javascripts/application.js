@@ -36,9 +36,41 @@ var injectScriptToMenuItems = function() {
 }
 
 $(document).ready(function() {
+	event.preventDefault();
+
 	injectScriptToMenuItems();
 
 	$(document).on("focus", "[data-behaviour~='datepicker']", function(e){
 	    $(this).datepicker({"format": "yyyy-mm-dd", "weekStart": 1, "autoclose": true})
 	});
+
+	$('input#from').datepicker({
+		"format": "yyyy-mm-dd", 
+		"weekStart": 1, 
+		"autoclose": true}).on("changeDate", function(event) {
+			event.preventDefault();
+
+			if ( $(this).val() == "" || window.location.search == "?start_date=" + $(this).val() + "&end_date=" + $("input#to").val())
+				return;
+
+			window.location.assign(window.location.protocol + "//" + window.location.host + window.location.pathname + "?start_date=" + $(this).val() + "&end_date=" + $('input#to').val());
+		});
+
+	$('input#to').datepicker({
+		"format": "yyyy-mm-dd", 
+		"weekStart": 1, 
+		"autoclose": true}).on("changeDate", function(event) {
+			event.preventDefault();
+
+			if ( $(this).val() == "" || window.location.search == "?start_date=" + $('input#from').val() + "&end_date=" + $(this).val() )
+				return;
+
+			window.location.assign(window.location.protocol + "//" + window.location.host + window.location.pathname + "?start_date=" + $('input#from').val() + "&end_date=" + $(this).val());
+		});
+    
+    // $('input#from').change(function(event){
+    // 	event.preventDefault();
+    // 	event.stopPropagation();
+    //     alert("From : " + $("input#from").val() + " and To : " + $("input#to").val());
+    // });
 });

@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-	attr_accessible :name, :username, :birthday, :password, :password_confirmation, :new_password, :new_password_confirmation, 
+	attr_accessible :name, :username, :email, :birthday, :password, :password_confirmation, :new_password, :new_password_confirmation, 
 					:previous_username, :remember_me
 	attr_accessor	:password, :password_confirmation, :new_password, :new_password_confirmation, 
 					:previous_username, :remember_me

@@ -24,6 +24,7 @@ class UsersController < ApplicationController
 	def register
 		user = User.new(:name => params[:user][:name],
 						:username => params[:user][:username],
+						:username => params[:user][:username],
 						:birthday => params[:user][:birthday],
 						:password => params[:user][:password])
 		if user.valid?
@@ -54,6 +55,7 @@ class UsersController < ApplicationController
 		user = User.find_by_id(params[:id])
 		user.update_attributes( :name => params[:user][:name],
 								:username => params[:user][:username],
+								:email => params[:user][:email],
 								:birthday => params[:user][:birthday],
 								:password => params[:user][:password])
 		if user.valid?

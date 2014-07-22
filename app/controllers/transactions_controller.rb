@@ -33,8 +33,8 @@ class TransactionsController < ApplicationController
 		def register_workplace_transaction
 			transaction = WpTransaction.new(params[:transaction])
 			if transaction.valid?
-				current_user.paypal_transactions << transaction
-				transaction.save
+				current_user.accounts.find(params[:transaction][:account_id]).wp_transactions << transaction
+				current_user.save
 				flash[:notice] = 'A transaction registered successfully.'
 				redirect_to :action => 'list'
 			else
