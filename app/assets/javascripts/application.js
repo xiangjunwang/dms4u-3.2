@@ -20,7 +20,7 @@
 
 var clearActiveTagFromMenuItem = function() {
 	$($('body > .navbar .container .nav li.active')[0]).removeClass('active');
-}
+};
 
 var injectScriptToMenuItems = function() {
 	var menuItems = $('body > .navbar .container .nav li a');
@@ -33,7 +33,7 @@ var injectScriptToMenuItems = function() {
 			$(this).parent().addClass('active');
 		});
 	}
-}
+};
 
 $(document).ready(function() {
 	event.preventDefault();
@@ -41,7 +41,7 @@ $(document).ready(function() {
 	injectScriptToMenuItems();
 
 	$(document).on("focus", "[data-behaviour~='datepicker']", function(e){
-	    $(this).datepicker({"format": "yyyy-mm-dd", "weekStart": 1, "autoclose": true})
+	    $(this).datepicker({"format": "yyyy-mm-dd", "weekStart": 1, "autoclose": true});
 	});
 
 	$('input#from').datepicker({
